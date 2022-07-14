@@ -1,2 +1,3 @@
-# frontend
-The Lunaelectric web frontend
+# Lunaelectric Frontend Repo
+
+Frontend code!
