@@ -1,4 +1,4 @@
-name: mondoo-scan-dockerfile
+name: mondoo-scan-k8s
 
 on:
   pull_request:
@@ -16,5 +16,5 @@ jobs:
         uses: mondoohq/actions@main
         with:
           service_account_credentials: ${{ secrets.MONDOO_CLIENT_ACCOUNT }}
-          scan_type: docker_image_from_dockerfile
-          path: Dockerfile
+          scan_type: k8s
+          path: frontend.yml
