@@ -2,7 +2,6 @@ name: mondoo-scan-k8s
 
 on:
   pull_request:
-    branches: [main]
   push:
     branches: [main]
 
@@ -13,8 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Scan with Mondoo
-        uses: mondoohq/actions@main
+        uses: mondoohq/actions/k8s-manifest@main
         with:
-          service_account_credentials: ${{ secrets.MONDOO_CLIENT_ACCOUNT }}
-          scan_type: k8s
+          service-account-credentials: ${{ secrets.MONDOO_CLIENT_ACCOUNT }}
           path: frontend.yml
