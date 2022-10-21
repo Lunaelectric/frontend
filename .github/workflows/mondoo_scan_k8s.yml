@@ -14,5 +14,5 @@ jobs:
       - name: Scan with Mondoo
         uses: mondoohq/actions/k8s-manifest@main
         with:
-          service-account-credentials: ${{ secrets.MONDOO_CLIENT_ACCOUNT }}
+          service-account-credentials: ${{ secrets.MONDOO_SERVICE_ACCOUNT }}
           path: frontend.yml
