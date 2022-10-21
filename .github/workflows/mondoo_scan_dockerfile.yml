@@ -7,14 +7,23 @@ on:
     branches: [main]
 
 jobs:
-  scan:
+  docker-build-scan:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Scan with Mondoo
-        uses: mondoohq/actions@main
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v3
         with:
-          service_account_credentials: ${{ secrets.MONDOO_CLIENT_ACCOUNT }}
-          scan_type: docker_image_from_dockerfile
-          path: Dockerfile
+          push: false
+          load: true
+          tags: luna/frontend:latest
+      - name: Scan Docker Image
+        uses: mondoohq/actions/docker-image@main
+        with:
+          service-account-credentials: ${{ secrets.MONDOO_SERVICE_ACCOUNT }}
+          image: luna/frontend:latest
