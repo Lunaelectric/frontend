@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: luna-frontend
   namespace: luna
+  labels:
+    owner: ui_team
 spec:
   selector:
     matchLabels:
